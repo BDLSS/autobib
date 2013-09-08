@@ -5,9 +5,10 @@ This test sources that require an api key to
 be used. It also checks the author and title search.'''
 import unittest
 import fetch
+from keys import PLOS_KEY
 ENABLE_REMOTE = False # This will stop queries going to PLOS.
 GENDPOINT = 'http://api.plos.org/search?'
-GKEY = '' # You need a key for this.
+GKEY = PLOS_KEY  # You need a key for this.
 
 class TestApi(unittest.TestCase):
     '''Check API keys can be used in Solr bibliographic search.'''          
