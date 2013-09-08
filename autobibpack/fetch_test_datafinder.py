@@ -1,12 +1,13 @@
 '''Test the search interface against datafinder using solr'''
 import unittest
 import fetch
+from sources import Datafinder
 
 class TestDataFinderBasic(unittest.TestCase):
     '''Check the basic functionality of Solr search of datafinder.'''          
     def setUp(self):
         self.NAME = 'dfinder_solr'
-        self.END = 'http://datafinder-d2v.bodleian.ox.ac.uk:8081/solr/select?'
+        self.END = Datafinder().ENDPOINT
         self.FIELD = 'silo'
         # We are going to use the following thesis as our test item.
         self.SILO = 'eprints'

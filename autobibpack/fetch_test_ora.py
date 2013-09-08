@@ -4,12 +4,13 @@ This tests the core features which should
 be the same for most sources.'''
 import unittest
 import fetch
+from sources import Ora
 
 class TestOraBasic(unittest.TestCase):
     '''Check the basic functionality of the Solr bibliographic search.'''          
     def setUp(self):
         self.NAME = 'ora_solr'
-        self.END = 'http://ora.ox.ac.uk:8080/solr/core_metadata/select/?'
+        self.END = Ora().ENDPOINT
         self.FIELD = 'author'
         # We are going to use the following thesis as our test item.
         # http://ora.ox.ac.uk/objects/uuid:83530474-369e-417b-a8db-ac06ebf42c84
@@ -281,7 +282,7 @@ class TestOraLonger(unittest.TestCase):
     '''Check the basic functionality of the Solr bibliographic search.'''          
     def setUp(self):
         self.NAME = 'ora_solr'
-        self.END = 'http://ora.ox.ac.uk:8080/solr/core_metadata/select/?'
+        self.END = Ora().ENDPOINT
         self.FIELD = 'author'
         self.AUTHOR = 'cummings'
         self.SEARCH = fetch.Search(self.NAME)

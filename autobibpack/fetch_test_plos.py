@@ -5,18 +5,18 @@ This test sources that require an api key to
 be used. It also checks the author and title search.'''
 import unittest
 import fetch
-from keys import PLOS_KEY
+from sources import Plos
+
 ENABLE_REMOTE = False # This will stop queries going to PLOS.
-GENDPOINT = 'http://api.plos.org/search?'
-GKEY = PLOS_KEY  # You need a key for this.
 
 class TestApi(unittest.TestCase):
     '''Check API keys can be used in Solr bibliographic search.'''          
     def setUp(self):
-        self.NAME = 'plos_solr'
-        self.END = GENDPOINT 
-        self.KEY = GKEY
-        self.URL_API_KEY = 'api_key'
+        self.NAME = 'plos_test'
+        p = Plos()
+        self.END = p.ENDPOINT 
+        self.KEY = p.KEY
+        self.URL_API_KEY = p.URL_KEY_FIELD 
         self.SEARCH = fetch.Search(self.NAME)
             
     # Test functionality where sources require an API key
@@ -45,9 +45,10 @@ class TestCustomQuery(unittest.TestCase):
     '''Check API keys can be used in Solr bibliographic search.'''          
     def setUp(self):
         self.NAME = 'plos_solr'
-        self.END = GENDPOINT 
-        self.KEY = GKEY
-        self.URL_API_KEY = 'api_key'
+        p = Plos()
+        self.END = p.ENDPOINT 
+        self.KEY = p.KEY
+        self.URL_API_KEY = p.URL_KEY_FIELD
         self.AUTHOR = 'Majlender'
         self.AUTHOR2 = 'Welling'
         self.AUTHOR_NONASCII = u"Björk"
@@ -58,7 +59,7 @@ class TestCustomQuery(unittest.TestCase):
         self.ETIME = '00:00:00Z'
         self.EDATETIME = '%sT%s'%(self.EDATE, self.ETIME)
         self.SEARCH = fetch.Search(self.NAME)
-        self.JOINER = ' AND '
+        self.JOINER = p.AND_JOINER
         
         # These expected value might change. Correct as
         self.DOCS_EXPECTED = 8 #of 26th July 2013

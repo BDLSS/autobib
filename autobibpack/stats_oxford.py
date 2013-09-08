@@ -2,6 +2,7 @@ import datetime
 import time
 import stats
 import fetch
+from sources import Ora, Datafinder8081, Datafinder8000
 
 #From schema
 #http://ora.ox.ac.uk:8080/solr/core_metadata/admin/file/?contentType=text/xml;charset=utf-8&file=schema.xml
@@ -69,10 +70,10 @@ class DateLoader(object):
         self.YEAR_START = start_year
         self.YEAR_END = end_year
         if not endpoint:
-            self.END = 'http://ora.ox.ac.uk:8080/solr/core_metadata/select/?'
+            self.END = Ora().ENDPOINT
         if endpoint == 'datafinder':
-            #self.END = 'http://datafinder-d2v.bodleian.ox.ac.uk:8081/solr/select?'''
-            self.END = 'http://datafinder-d2v.bodleian.ox.ac.uk:8000/solr/select?'''
+            self.END = Datafinder8081().ENDPOINT
+            self.END = Datafinder8000().ENDPOINT
         self.ENABLE_GET_DOCUMENTS = enable_get # Force users to enable get.
                         
         self.reset()
