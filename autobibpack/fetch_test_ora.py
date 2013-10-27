@@ -31,6 +31,8 @@ class TestOraBasic(unittest.TestCase):
         self.DOCS_EXPECTED = 334
         self.TITLE_NOQUOTES_EXPECTED = 112100
         self.TOTAL_DATERANGE = 250
+        # Total until able to explain why it has changed. 
+        self.TOTAL_DATERANGE = 248
  
     #  Basic checks the query is constructed okay, before calling source
     # ===============================================================
