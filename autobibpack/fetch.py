@@ -210,6 +210,27 @@ class Search(object):
         '''Print json text with small indents with keys sorted.'''
         return json.dumps(text, sort_keys=True,
                   indent=2, separators=(',', ': '))
+
+    #  Combine fetching, processing and returning results
+    # ===============================================================
+    def auto_list_ids(self, endpoint, value, field='*', batchsize=999):
+        '''Search endpoint for value in field and return list of ids.'''
+        # Setup the query
+        log = dict()
+        log['1. Extracting IDs from %s'] = endpoint
+        self.set_endpoint(endpoint)
+        self.set_rows(batchsize)
+        self.set_field_getlist(('id'))
+        log['2. Value searching for'] = value
+        log['3. Field searching in'] = field
+        self.query(field, value)
+        
+        # Run it and return results.
+        self.get_all()
+        log['4. Number of IDs found'] = self.DOCS_FOUND
+        unique = self.DOCUMENTS.keys()
+        log['5. Number of unique IDs'] = len(unique)
+        return unique, log
         
 if __name__ == '__main__':
     import fetch_test_ora as get

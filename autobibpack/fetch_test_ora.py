@@ -306,14 +306,33 @@ class TestOraLonger(unittest.TestCase):
         self.SEARCH.get_all()
         print len(self.SEARCH.DOCUMENTS)
     
+class TestOraAuto(unittest.TestCase):
+    '''Check the methods that combine different parts of the system.'''          
+    def setUp(self):
+        self.NAME = 'ora_solr_idlist'
+        self.END = Ora().ENDPOINT
+        self.FIELD = 'recordContentSource'
+        self.VALUE = 'polonsky'
+        # Did a visual check of ORA to confirm this id is from the source above.
+        self.CHECK_ID = 'uuid:278c6978-9421-46af-af61-a062a2044591'   
+        self.SEARCH = fetch.Search(self.NAME)
+        self.TOTAL_EXPECTED = 1242
+        
+    def do_get(self, end, value, field):
+        return self.SEARCH.auto_list_ids(end, value, field)
     
+    def test100_basic(self):
+        ids, log = self.do_get(self.END, self.VALUE, self.FIELD)
+        self.assertIn(self.CHECK_ID, ids)
+        self.assertGreaterEqual(len(ids), self.TOTAL_EXPECTED)
+        self.assertEqual(len(log), 5)
         
 # ===============================================================
 #  Enable use of these tests by external script.
 # ===============================================================
 SUITE_NAME = str(__name__)
-#TESTS_AVAILABLE = [TestOraBasic, TestOraLonger]
-TESTS_AVAILABLE = [TestOraBasic, ] # disable longer tests
+#TESTS_AVAILABLE = [TestOraBasic, TestOraLonger, TestOraAuto]
+TESTS_AVAILABLE = [TestOraBasic, TestOraAuto, ] # disable longer tests
 def suite(tests=TESTS_AVAILABLE):
     '''Return a test suite of tests so this can run run by external script.'''
     suite  = unittest.TestSuite()
