@@ -1,6 +1,6 @@
 import datetime
 import time
-import stats
+import years
 import fetch
 from sources import Ora, Datafinder8081, Datafinder8000
 
@@ -83,7 +83,7 @@ class DateLoader(object):
         now = datetime.date.today().year
         if not self.YEAR_START: self.YEAR_START = now-1
         if not self.YEAR_END: self.YEAR_END = now
-        self.STATS = stats.StatMake(self.data_loader)            
+        self.STATS = years.StatMake(self.data_loader)            
         self.STATS.set_years(self.YEAR_START, self.YEAR_END)
         self.STATS.set_months(1, 12)
             
