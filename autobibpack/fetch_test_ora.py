@@ -256,7 +256,7 @@ class TestOraBasic(unittest.TestCase):
         self.do_author() 
         self.SEARCH.set_field_getlist(('id,title'))
         docs = self.SEARCH.get_documents()
-        self.assertEqual(self.SEARCH.DOCS_FOUND, self.DOCS_EXPECTED)
+        self.assertGreaterEqual(self.SEARCH.DOCS_FOUND, self.DOCS_EXPECTED)
         for item in range(len(docs)): # test each doc has both field.
             data = docs[item]
             self.assertEqual(len(data), 2)
