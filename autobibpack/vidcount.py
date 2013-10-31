@@ -13,6 +13,8 @@ import os
 
 import fetch # Needed to discover which set of items we want data for.
 
+ENABLE_STATIC_REMOTE = False # Fetch data from remote version
+
 class ViewsAndDownloads(object):
     '''Calculate views and downloads for a set of item.
     
@@ -94,6 +96,7 @@ class ViewsAndDownloads(object):
             infile = file(indata)
             stats = infile.read()
             infile.close()
+            error_open = False
             clean = 1
         except IOError:
             error_open = True
@@ -107,7 +110,7 @@ class ViewsAndDownloads(object):
         
         # Try and get from local file or remote source.
         stats, clean, error_open = self.static_local(subpath)
-        if error_open:
+        if error_open and ENABLE_STATIC_REMOTE:
             stats, clean, error_open = self.static_remote(address)
         
         # Extract the downloads and views.
