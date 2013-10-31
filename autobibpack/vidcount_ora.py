@@ -9,11 +9,12 @@ import vidcount # needed to get views and downloads
 class Report():
     def __init__(self):
         self.END = sources.Ora().ENDPOINT
-        self.SLEEP = 10 # how long should it wait between multiple reports.
-        self.LIST_FUNDERS = ('JISC', 'wellcome')
-        self.LIST_CONTENT_SOURCES = ('polonsky',)
+        self.SLEEP = 0 # how long should it wait between multiple reports.
+        self.LIST_FUNDERS = ('JISC', 'wellcome', '"European Union"')
+        self.LIST_CONTENT_SOURCES = ('polonsky', 'economics.ouls.ox.ac.uk')
         self.LIST_CUSTOM = (('issn','1545-9993'),
                             ('author', 'comina'),
+                            ('faculty', '"School of Conservation Sciences"')
                             )
     def run(self):
         '''Run the standard reports'''
