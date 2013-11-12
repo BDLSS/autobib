@@ -13,7 +13,7 @@ import os
 
 import fetch # Needed to discover which set of items we want data for.
 
-ENABLE_STATIC_REMOTE = False # Fetch data from remote version
+ENABLE_STATIC_REMOTE = True # Fetch data from remote version
 
 class ViewsAndDownloads(object):
     '''Calculate views and downloads for a set of item.
