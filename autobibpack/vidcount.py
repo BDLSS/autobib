@@ -159,7 +159,7 @@ class ViewsAndDownloads(object):
         # Store results
         self.REPORT_METHOD['4a. Result IDs checked.'] = count
         self.REPORT_METHOD['4b. Number with results'] = clean_count
-        self.REPORT_METHOD['4b. Timeout issues'] = errors_opening
+        self.REPORT_METHOD['4b. Opening issues'] = errors_opening
         self.REPORT_METHOD['4c. Decode issues'] = errors_index
         self.REPORT_METHOD['4d. Seconds taken get results'] = time.time()-start
         v = self.VIEWS
