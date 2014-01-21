@@ -117,14 +117,14 @@ class ViewsAndDownloads(object):
         error_index = False
         bits = stats.split(';')
         try:
-            d = bits[0].strip()
+            d = bits[1].strip()
             downs = int(d)
         except IndexError:
             error_index = True
             clean = 0
             downs = 0
         try:
-            v = bits[1].strip()
+            v = bits[0].strip()
             views = int(v)
         except IndexError:
             error_index = True
