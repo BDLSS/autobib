@@ -1,7 +1,7 @@
 
 class Ora(object):
     def __init__(self):
-        self.ENDPOINT = 'http://ora.ox.ac.uk:8080/solr/core_metadata/select/?'
+        self.ENDPOINT = 'http://ora.ox.ac.uk/solr/?'
 
 class Plos(object):
     def __init__(self):
